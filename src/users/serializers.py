@@ -7,7 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
     profile_picture = ThumbnailerJSONSerializer(required=False,
                                                 allow_null=True,
                                                 alias_target='src.users')
-
     class Meta:
         model = User
         fields = (
@@ -16,8 +15,9 @@ class UserSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'profile_picture',
+            'mobile_number',
         )
-        read_only_fields = ('username', )
+        read_only_fields = ('username', 'mobile_number')
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -40,6 +40,7 @@ class CreateUserSerializer(serializers.ModelSerializer):
             'email',
             'auth_token',
             'profile_picture',
+            'mobile_number'
         )
         read_only_fields = ('auth_token', )
         extra_kwargs = {'password': {'write_only': True}}

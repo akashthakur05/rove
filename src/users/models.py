@@ -34,6 +34,7 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     profile_picture = ThumbnailerImageField('ProfilePicture', upload_to='profile_pictures/', blank=True, null=True)
+    mobile_number = models.CharField(max_length=10, verbose_name='Mobile Number', blank=True, null=True)
 
     def __str__(self):
         return self.username
